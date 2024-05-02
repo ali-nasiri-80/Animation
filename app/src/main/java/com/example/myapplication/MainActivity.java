@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,35 +17,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ScaleAnimation scaleAnimation=new ScaleAnimation(1,2,1,2,Animation.RELATIVE_TO_SELF,.5f,Animation.RELATIVE_TO_SELF,.5f);
+        scaleAnimation.setDuration(1000);
+        scaleAnimation.setFillAfter(true);
+        scaleAnimation.setRepeatCount(Animation.INFINITE);
+        scaleAnimation.setRepeatMode(Animation.REVERSE);
 
-        AlphaAnimation alphaAnimation=new AlphaAnimation(1,0);
-        alphaAnimation.setDuration(1000);
-        alphaAnimation.setRepeatCount(5);
-        alphaAnimation.setFillAfter(true);
-        alphaAnimation.setRepeatMode(Animation.REVERSE);
-        ImageView imageView=findViewById(R.id.iv_main);
+       final  ImageView imageView=findViewById(R.id.iv_main);
         View playButton=findViewById(R.id.fab_main);
-        alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                Log.i(TAG, "onAnimationEnd: ");
-           
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-                Log.i(TAG,"onAnimationREpeate");
-            }
-        });
+        scaleAnimation.setDuration(1000);
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageView.startAnimation(alphaAnimation);
+                imageView.startAnimation(scaleAnimation);
 
             }
         });
