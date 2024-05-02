@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.media.Image;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.*;
@@ -16,24 +17,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TranslateAnimation translateAnimation=new TranslateAnimation(Animation.RELATIVE_TO_PARENT,0,Animation.RELATIVE_TO_PARENT,0,Animation.RELATIVE_TO_PARENT,0,Animation.RELATIVE_TO_PARENT,.7f);
-        translateAnimation.setDuration(1000);
-        translateAnimation.setFillAfter(true);
-        translateAnimation.setInterpolator(new BounceInterpolator());
-
-       final  ImageView imageView=findViewById(R.id.iv_main);
         View playButton=findViewById(R.id.fab_main);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(),"imageView clicked!",Toast.LENGTH_SHORT).show();
-            }
-        });
+        final ImageView imageView=findViewById(R.id.iv_main);
+
+        RotateAnimation rotateAnimation=new RotateAnimation(0,360,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+        rotateAnimation.setDuration(1000);
+
 
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageView.startAnimation(translateAnimation);
+            imageView.startAnimation(rotateAnimation);
 
             }
         });
